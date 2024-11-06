@@ -26,3 +26,8 @@ void GameController::Init() {
 	Loading = true;
 	currentLevel = 0;
 }
+
+void GameController::ProceedMove(WPARAM wParam, UINT msg) {
+
+	currentLevel->ProceedMove(wParam,msg);
+}

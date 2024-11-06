@@ -1,4 +1,8 @@
 #include "Graphics.h"
+
+ID2D1Factory* Graphics::factory;
+
+
 void Graphics::BeginDraw() {
 	renderTarget->BeginDraw();
 }
@@ -50,7 +54,18 @@ void Graphics::DrawCircle(float x, float y, float radius, float r, float g, floa
 	brush->Release();
 }
 
-
 ID2D1RenderTarget* Graphics::GetRenderTarget() {
 	return renderTarget;
+}
+
+void Graphics::DrawShape(ID2D1RectangleGeometry* rect) {
+	ID2D1SolidColorBrush* brush;
+	renderTarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 1.0f, 1.0f, 1.0f), &brush);
+	renderTarget->DrawGeometry(rect, brush, 1);
+}
+
+void Graphics::DrawRectangle(D2D1_RECT_F r) {
+	ID2D1SolidColorBrush* brush;
+	renderTarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 1.0f, 1.0f, 1.0f), &brush);
+	renderTarget->DrawRectangle(&r, brush);
 }

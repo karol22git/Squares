@@ -1,25 +1,36 @@
 #include <windows.h>
 #include <tchar.h>
 #include "Graphics.h"
-
+#include "Level1.h"
+#include "GameController.h"
 Graphics* g;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	int add = 10;
 	switch (msg) {
 	case WM_KEYDOWN:
+		GameController::ProceedMove(wParam,msg);
 		if (wParam == VK_UP) {
-			SetWindowText(hWnd, _T("Hello1"));
+			//SetWindowText(hWnd, _T("Hello1"));
 
 		}
 		else if (wParam == VK_DOWN) {
-			SetWindowText(hWnd, _T("Hello2"));
+			//SetWindowText(hWnd, _T("Hello2"));
 		}
 		else if (wParam == VK_LEFT) {
 		}
 		else if (wParam == VK_RIGHT) {
 		}
 		UpdateWindow(hWnd);
+		break;
+	case WM_KEYUP:
+		GameController::ProceedMove(wParam, msg);
+		if (wParam == VK_LEFT) {
+			SetWindowText(hWnd, _T("Hello1"));
+
+		}
+		else if (wParam == VK_RIGHT) {
+			SetWindowText(hWnd, _T("Hello2"));
+		}
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
@@ -76,11 +87,10 @@ int CALLBACK WinMain(
 		//delete g;
 		return -1;
 	}
-	//GameLevel::Init(g);
+	GameLevel::Init(g);
 	ShowWindow(h, SW_SHOW);
 
-
-	//GameController::LoadInitialLevel(new Level1());
+	GameController::LoadInitialLevel(new Level1());
 	MSG message;
 	message.message = WM_NULL;
 	while (message.message != WM_QUIT) {
@@ -89,12 +99,8 @@ int CALLBACK WinMain(
 
 		}
 		else {
-			//GameController::Update();
-
-			g->BeginDraw();
-			//GameController::Render();
-			g->ClearScreen(255, 255, 255);
-			g->EndDraw();
+			GameController::Update();
+			GameController::Render();
 		}
 	}
 	return 0;

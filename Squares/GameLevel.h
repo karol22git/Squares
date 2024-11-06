@@ -8,7 +8,8 @@ public:
 	virtual void Update() = 0;
 	virtual void Unload() = 0;
 	virtual void Render() = 0;
-private:
+	virtual void ProceedMove(WPARAM wParam, UINT msg) = 0;
+protected:
 	static Graphics* gfx;
 };
 

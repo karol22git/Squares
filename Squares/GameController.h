@@ -9,6 +9,7 @@ public:
 	static void SwitchLevel(GameLevel*);
 	static void Render();
 	static void Update();
+	static void ProceedMove(WPARAM wParam,UINT msg);
 
 private:
 	GameController();
