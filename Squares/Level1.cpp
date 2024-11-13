@@ -8,10 +8,18 @@ void Level1::Load() {
 void Level1::Unload() {
 
 }
-
+bool flag = false;
 void Level1::Update() {
-	//mainCharacter->Move();
 	mainCharacter->Update();
+	flag = false;
+	for (auto n : terrain) {
+		D2D1_RECT_F r; 
+		n->GetRect(&r);
+		auto r2 = mainCharacter->GetSkin();
+		if (cDetector->RectangleColissionDetection(r,r2)){
+			flag = true;
+		}
+	}
 }
 
 void Level1::Render() {
@@ -20,7 +28,8 @@ void Level1::Render() {
 	for (auto n : terrain) gfx->DrawShape(n);
 	//gfx->DrawShape(rectangleGeometry);
 	//gfx->DrawShape(mainCharacter->GetSkin());
-	gfx->DrawRectangle(mainCharacter->GetSkin());
+	if (flag) gfx->DrawFilledRectangle(mainCharacter->GetSkin());
+	else gfx->DrawRectangle(mainCharacter->GetSkin());
 	gfx->EndDraw();
 
 }
@@ -43,15 +52,6 @@ void Level1::BuildTerrain() {
 }
 
 void Level1::ProceedMove(WPARAM wParam, UINT msg) {
-	switch (msg) {
-	case WM_KEYDOWN:
-		mainCharacter->Move(wParam);
-		break;
-	case WM_KEYUP:
-		mainCharacter->StopMove(wParam);
-		break;
-		default:
-		break;
-	}
-	mainCharacter->Move(wParam);
+	if(msg == WM_KEYDOWN) mainCharacter->Move(wParam);
+	else if(msg == WM_KEYUP) mainCharacter->StopMove(wParam);
 }

@@ -88,7 +88,7 @@ void MainCharacter::Update() {
 		skin.right += 10;
 	}
 	if (isMovingLeft) {
-		skin.left -= 14;
-		skin.right -= 14;
+		skin.left -= 10;
+		skin.right -= 10;
 	}
 }

@@ -69,3 +69,9 @@ void Graphics::DrawRectangle(D2D1_RECT_F r) {
 	renderTarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 1.0f, 1.0f, 1.0f), &brush);
 	renderTarget->DrawRectangle(&r, brush);
 }
+
+void Graphics::DrawFilledRectangle(D2D1_RECT_F r) {
+	ID2D1SolidColorBrush* brush;
+	renderTarget->CreateSolidColorBrush(D2D1::ColorF(255.0f, 0.0f, 0.0f, 1.0f), &brush);
+	renderTarget->FillRectangle(&r, brush);
+}

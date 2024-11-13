@@ -17,19 +17,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			//SetWindowText(hWnd, _T("Hello2"));
 		}
 		else if (wParam == VK_LEFT) {
+			SetWindowText(hWnd, _T("LEFT DOWN"));
 		}
 		else if (wParam == VK_RIGHT) {
+			SetWindowText(hWnd, _T("RIGHT DOWN"));
 		}
-		UpdateWindow(hWnd);
+		//UpdateWindow(hWnd);
 		break;
 	case WM_KEYUP:
 		GameController::ProceedMove(wParam, msg);
 		if (wParam == VK_LEFT) {
-			SetWindowText(hWnd, _T("Hello1"));
+			SetWindowText(hWnd, _T("LEFT UP"));
 
 		}
 		else if (wParam == VK_RIGHT) {
-			SetWindowText(hWnd, _T("Hello2"));
+			SetWindowText(hWnd, _T("LEFT DOWN"));
 		}
 		break;
 	case WM_DESTROY:

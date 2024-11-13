@@ -16,6 +16,7 @@ public:
 	static ID2D1Factory* factory;
 	void DrawShape(ID2D1RectangleGeometry* rect);
 	void DrawRectangle(D2D1_RECT_F r);
+	void DrawFilledRectangle(D2D1_RECT_F r);
 private:
 	ID2D1HwndRenderTarget* renderTarget;
 

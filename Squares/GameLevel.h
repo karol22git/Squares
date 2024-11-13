@@ -1,5 +1,6 @@
 #pragma once
 #include "Graphics.h"
+#include "ColissionDetector.h"
 class GameLevel
 {
 public:
@@ -11,5 +12,6 @@ public:
 	virtual void ProceedMove(WPARAM wParam, UINT msg) = 0;
 protected:
 	static Graphics* gfx;
+	static ColissionDetector* cDetector;
 };
 
